@@ -1,15 +1,15 @@
-import React from "react";
-import { useState, useContext, useEffect } from "react";
-import Card from "./shared/Card";
-import Button from "./shared/Button";
-import RatingSelect from "./RatingSelect";
-import FeedbackContext from "../context/FeedbackContext";
+import React from 'react';
+import { useState, useContext, useEffect } from 'react';
+import Card from './shared/Card';
+import Button from './shared/Button';
+import RatingSelect from './RatingSelect';
+import FeedbackContext from '../context/FeedbackContext';
 
 function FeedbackForm() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const { addFeedback, feedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
@@ -23,12 +23,12 @@ function FeedbackForm() {
   }, [feedbackEdit]);
 
   const handleTextChange = (e) => {
-    if (text === "") {
+    if (text === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text !== "" && text.trim().length <= 10) {
+    } else if (text !== '' && text.trim().length <= 10) {
       setBtnDisabled(true);
-      setMessage("Text must be atleast 10 characters!");
+      setMessage('Text must be atleast 10 characters!');
     } else {
       setBtnDisabled(false);
       setMessage(null);
@@ -50,7 +50,7 @@ function FeedbackForm() {
       } else {
         addFeedback(newFeedback);
       }
-      setText("");
+      setText('');
     }
   };
 
@@ -59,19 +59,19 @@ function FeedbackForm() {
       <form onSubmit={handleSubmit}>
         <h2>Give us a rating!</h2>
         <RatingSelect select={(rating) => setRating(rating)} />
-        <div className="input-group">
+        <div className='input-group'>
           <input
             onChange={handleTextChange}
-            type="text"
-            placeholder="Write a review"
+            type='text'
+            placeholder='Write a review'
             value={text}
           />
-          <Button type="submit" isDisabled={btnDisabled}>
+          <Button type='submit' isDisabled={btnDisabled}>
             Send
           </Button>
         </div>
 
-        {message && <div className="message">{message}</div>}
+        {message && <div className='message'>{message}</div>}
       </form>
     </Card>
   );
