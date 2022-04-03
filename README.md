@@ -7,4 +7,6 @@ It uses a mock REST api with json-server.
 - json-server
 - react-icons
 - uuid
+# Deployment
+- Netlify: https://blucheez-feedback-app.netlify.app
 
